@@ -17,10 +17,11 @@ const WordList = (props) => {
     const word_lists = useSelector((state) => state.word.wordList);
 
     return (
+
         <section className="page-list">
             {
                 word_lists.map((word) => {
-                    return( <WordCard word={word}/> );
+                    return (<WordCard word={word}/>);
                 })
             }
         </section>
