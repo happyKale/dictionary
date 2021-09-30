@@ -37,29 +37,26 @@ function App() {
     const cardChange = () => {
         const list = document.getElementsByClassName('card-word-idiv');
         const new_list = [...list];
-        let text = document.getElementsByClassName("header-link-cardchange-text")[0].outerText;
-        if( text === "CLOSE"){
-            document.getElementsByClassName("header-link-cardchange-text")[0].innerHTML = "OPEN";
+        let text = document.getElementsByClassName("header-link-cardchange-text")[0];
+        if( text.outerText === "CLOSE"){
+            text.innerHTML = "OPEN";
+            new_list.forEach((i) => {
+                if(i.lastChild.classList[2] === "fa-caret-up"){
+                    i.lastChild.click();
+                }
+            });
         }else{
-            document.getElementsByClassName("header-link-cardchange-text")[0].innerHTML = "CLOSE";
+            text.innerHTML = "CLOSE";
+            new_list.forEach((i) => {
+                if(i.lastChild.classList[2] === "fa-caret-down"){
+                    i.lastChild.click();
+                }
+            });
         }
-        new_list.forEach((i) => {
-            i.lastChild.click();
-        });
     };
 
     React.useEffect(async () => {
         await dispatch(loadWordFB());
-
-        // 데이터 가져오기
-        // const query = await getDocs(collection(db, "dictionary"));
-        // console.log(query);
-        // const emptyList = [];
-        // query.forEach((doc) => {
-        //         console.log("데이터들 확인!!!: ",doc.id, doc.data());
-        //         emptyList.push({id: doc.id, ...doc.data()});
-        // });
-        // console.log("새롭게 만든 리스트: ",emptyList);
     }, []);
 
     return (
